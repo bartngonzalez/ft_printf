@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 15:50:12 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/02/03 21:37:08 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/03/05 19:50:28 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int		ft_flags(char *str, va_list arg)
 		str_len += ft_u_flag(arg);
 	if (*str == 'x')
 		str_len += ft_x_flag(arg);
-	if (*str == 'p')
-		str_len += ft_p_flag(arg);
+	// if (*str == 'p')
+	// 	str_len += ft_p_flag(arg);
 	if (*str == '%')
 	{
 		ft_putchar('%');

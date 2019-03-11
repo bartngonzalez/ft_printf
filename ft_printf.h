@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 20:32:55 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/02/04 16:51:08 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/03/09 18:47:41 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,29 @@ void ft_convtype_2(char *str, t_fwplc *ptr);
 
 void ft_format(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg);
 
+/*
+** ft_c_conv.c
+*/
+
+int		ft_c_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg);
+
+/*
+** ft_s_conv.c
+*/
+
+int		ft_s_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg);
+
+/*
+** ft_p_conv.c
+*/
+
+int		ft_p_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg);
+int		ft_p_base(t_fwplc *ptrfwplc, t_flags *ptrflags,
+	unsigned long nbr, int base);
+void	ft_p_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str);
+
 int		ft_flags(char *str, va_list arg);
 int		ft_base(unsigned long nbr, int base);
-
-int		ft_c_flag(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg);
-int		ft_s_flag(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg);
-int		ft_p_flag(va_list arg);
 
 int		ft_d_i_flag(va_list arg);
 int		ft_o_flag(va_list arg);

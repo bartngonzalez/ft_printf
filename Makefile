@@ -6,7 +6,7 @@
 #    By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/26 14:21:09 by bgonzale          #+#    #+#              #
-#    Updated: 2019/02/04 18:14:04 by bgonzale         ###   ########.fr        #
+#    Updated: 2019/03/05 19:49:21 by bgonzale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,13 +29,13 @@ CFILES = ft_libft.c \
 		 ft_format.c \
 		 ft_base.c \
 		 ft_flags.c \
-		 ft_c_flag.c \
-		 ft_s_flag.c \
+		 ft_c_conv.c \
+		 ft_s_conv.c \
+		 ft_p_conv.c \
 		 ft_d_i_flag.c \
 		 ft_o_flag.c \
 		 ft_u_flag.c \
 		 ft_x_flag.c \
-		 ft_p_flag.c \
 
 OBJS = $(CFILES:.c=.o)
 
