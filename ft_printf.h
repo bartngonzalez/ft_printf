@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 20:32:55 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/03/09 18:47:41 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/03/12 18:02:49 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,16 @@ int		ft_p_base(t_fwplc *ptrfwplc, t_flags *ptrflags,
 	unsigned long nbr, int base);
 void	ft_p_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str);
 
+/*
+** ft_di_conv.c
+*/
+
+int		ft_di_conv(va_list arg);
+int		ft_di_base(unsigned long nbr, int base);
+
 int		ft_flags(char *str, va_list arg);
 int		ft_base(unsigned long nbr, int base);
 
-int		ft_d_i_flag(va_list arg);
 int		ft_o_flag(va_list arg);
 int		ft_u_flag(va_list arg);
 int		ft_x_flag(va_list arg);
