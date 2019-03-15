@@ -6,13 +6,104 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 16:07:11 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/03/12 18:26:05 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/03/14 18:08:37 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_di_base(unsigned long nbr, int base)
+void	ft_di_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str)
+{
+	int mwidth;
+
+	if (ptrflags->minus)
+	{
+		if (ptrfwplc->minw > (int)ft_strlen(str) &&
+		ptrfwplc->minw > ptrfwplc->precision)
+		{
+			if (ptrfwplc->precision > (int)ft_strlen(str))
+			{
+				mwidth = 0;
+				while (mwidth < ptrfwplc->minw - ptrfwplc->precision)
+				{
+					ft_putchar(' ');
+					mwidth++;
+				}
+				while (mwidth <= ptrfwplc->precision - (int)ft_strlen(str))
+				{
+					ft_putchar('0');
+					mwidth++;
+				}
+				ft_putstr(str);
+			}
+			else
+			{
+				ft_putstr(str);
+				mwidth = 1;
+				while (mwidth <= ptrfwplc->minw - (int)ft_strlen(str))
+				{
+					ft_putchar(' ');
+					mwidth++;
+				}
+			}
+		}
+		else if (ptrfwplc->precision > (int)ft_strlen(str)
+		&& ptrfwplc->precision > ptrfwplc->minw)
+		{
+			mwidth = 0;
+			while (mwidth < ptrfwplc->precision - (int)ft_strlen(str))
+			{
+				ft_putchar('0');
+				mwidth++;
+			}
+			ft_putstr(str);
+		}
+	}
+	else
+	{
+		if (ptrfwplc->minw > (int)ft_strlen(str) &&
+		ptrfwplc->minw > ptrfwplc->precision)
+		{
+			if (ptrfwplc->precision > (int)ft_strlen(str))
+			{
+				mwidth = 0;
+				while (mwidth < ptrfwplc->minw - ptrfwplc->precision)
+				{
+					ft_putchar(' ');
+					mwidth++;
+				}
+				while (mwidth <= ptrfwplc->precision - (int)ft_strlen(str))
+				{
+					ft_putchar('0');
+					mwidth++;
+				}
+			}
+			else
+			{
+				mwidth = 1;
+				while (mwidth <= ptrfwplc->minw - (int)ft_strlen(str))
+				{
+					ft_putchar(' ');
+					mwidth++;
+				}
+			}
+		}
+		else if (ptrfwplc->precision > (int)ft_strlen(str)
+		&& ptrfwplc->precision > ptrfwplc->minw)
+		{
+			mwidth = 0;
+			while (mwidth < ptrfwplc->precision - (int)ft_strlen(str))
+			{
+				ft_putchar('0');
+				mwidth++;
+			}
+		}
+		ft_putstr(str);
+	}
+}
+
+int		ft_di_base(t_fwplc *ptrfwplc, t_flags *ptrflags,
+	unsigned long nbr, int base)
 {
 	unsigned long	i;
 	unsigned long	len;
@@ -33,12 +124,12 @@ int		ft_di_base(unsigned long nbr, int base)
 		nbr /= base;
 		i++;
 	}
-	ft_putstr(str);
+	ft_di_conv_help(ptrfwplc, ptrflags, str);
 	free(str);
 	return (1);
 }
 
-int		ft_di_conv(va_list arg)
+int		ft_di_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg)
 {
 	int		i;
 
@@ -53,6 +144,6 @@ int		ft_di_conv(va_list arg)
 		i = i * -1;
 		ft_putchar('-');
 	}
-	ft_di_base(i, 10);
+	ft_di_base(ptrfwplc, ptrflags, i, 10);
 	return (1);
 }
