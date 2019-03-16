@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 20:32:55 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/03/15 19:32:45 by bart             ###   ########.fr       */
+/*   Updated: 2019/03/16 01:30:55 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,11 +116,10 @@ void	ft_p_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str);
 
 int		ft_di_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg);
 int		ft_di_base(t_fwplc *ptrfwplc, t_flags *ptrflags,
-	unsigned long nbr, int base, int is_neg);
+	unsigned long nbr, int *base_isneg);
 void ft_di_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags,
-	char *str, int is_neg);
-void ft_left(t_fwplc *ptrfwplc, t_flags *ptrflags,
-	char *str, int is_neg);
+	char *str, int *base_isneg);
+void ft_left(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str, int *base_isneg);
 
 int		ft_flags(char *str, va_list arg);
 int		ft_base(unsigned long nbr, int base);
