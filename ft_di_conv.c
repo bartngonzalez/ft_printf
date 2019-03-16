@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 16:07:11 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/03/15 19:40:35 by bart             ###   ########.fr       */
+/*   Updated: 2019/03/16 01:06:09 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,29 @@ void ft_left(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str, int is_neg)
 {
 	int str_len;
 	int mwidth;
-	int ex_space;
+	int ps_space;
+	int neg_space;
 
 	str_len = (int)ft_strlen(str);
-	ex_space = 0;
+	ps_space = 0;
+	neg_space = (is_neg == 1) ? 1 : 0;
 	if (ptrfwplc->minw > str_len && ptrfwplc->precision == -1)
 	{
 		mwidth = 0;
+		if (is_neg == 0 && (ptrflags->plus || ptrflags->space))
+		{
+			if (ptrflags->plus)
+			{
+				ft_putchar('+');
+			}
+			else if (ptrflags->space)
+			{
+				ft_putchar(' ');
+			}
+			ps_space = 1;
+		}
 		ft_putstr(str);
-		while (mwidth < ptrfwplc->minw - str_len)
+		while (mwidth < ptrfwplc->minw - str_len - ps_space - neg_space)
 		{
 			ft_putchar(' ');
 			mwidth++;
@@ -43,7 +57,7 @@ void ft_left(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str, int is_neg)
 			{
 				ft_putchar(' ');
 			}
-			ex_space = 1;
+			ps_space = 1;
 		}
 		if (ptrfwplc->precision > str_len)
 		{
@@ -54,9 +68,9 @@ void ft_left(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str, int is_neg)
 			}
 		}
 		ft_putstr(str);
-		if (ptrfwplc->minw > mwidth + str_len)
+		if (ptrfwplc->minw > mwidth + str_len + ps_space + neg_space)
 		{
-			mwidth += str_len + ex_space;
+			mwidth += str_len + ps_space + neg_space;
 			while (mwidth < ptrfwplc->minw)
 			{
 				ft_putchar(' ');
