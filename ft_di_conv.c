@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 16:07:11 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/03/16 01:32:55 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/03/18 05:00:11 by bart             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,48 @@ void	ft_left(t_fwplc *ptrfwplc, t_flags *ptrflags,
 void	ft_di_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags,
 	char *str, int *base_isneg)
 {
+	int str_len;
+	int ps_space;
+	int mwidth;
+
+	str_len = ft_strlen(str);
+	ps_space = 0;
 	if (ptrflags->minus)
 	{
+		if (base_isneg[1] == 1)
+		{
+			ft_putchar('-');
+		}
 		ft_left(ptrfwplc, ptrflags, str, base_isneg);
+	}
+	else
+	{
+		if (ptrfwplc->minw > str_len && ptrfwplc->precision == -1)
+		{
+			mwidth = 0;
+			if (base_isneg[1] == 0 && (ptrflags->plus || ptrflags->space))
+			{
+				if (ptrflags->plus)
+				{
+					ft_putchar('+');
+				}
+				else if (ptrflags->space)
+				{
+					ft_putchar(' ');
+				}
+				ps_space = 1;
+			}
+			while (mwidth < ptrfwplc->minw - str_len - ps_space)
+			{
+				ft_putchar(' ');
+				mwidth++;
+			}
+			ft_putstr(str);
+		}
+		else
+		{
+			ft_putstr(str);
+		}
 	}
 }
 
@@ -139,7 +178,7 @@ int		ft_di_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg)
 
 	nbr = va_arg(arg, int);
 	base_isneg[0] = 10;
-	base_isneg[1] = 0;
+	base_isneg[1] = (nbr < 0) ? 1 : 0;
 	if ((long)nbr == 2147483648 || (long)nbr == -2147483648)
 	{
 		ft_putstr("-2147483648");
@@ -147,9 +186,7 @@ int		ft_di_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg)
 	}
 	if (nbr < 0)
 	{
-		base_isneg[1] = 1;
 		nbr = nbr * -1;
-		ft_putchar('-');
 	}
 	ft_di_base(ptrfwplc, ptrflags, nbr, base_isneg);
 	return (1);
