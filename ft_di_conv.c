@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 16:07:11 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/03/20 00:19:50 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/03/20 11:39:59 by bart             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,10 +111,13 @@ void	ft_di_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags,
 	{
 		if (ptrfwplc->minw > str_len && ptrfwplc->precision == -1)
 		{
-			while (mwidth < ptrfwplc->minw - str_len - ps_space - neg_space)
+			if (ptrflags->zero == 0)
 			{
-				ft_putchar(' ');
-				mwidth++;
+				while (mwidth < ptrfwplc->minw - str_len - ps_space - neg_space)
+				{
+					ft_putchar(' ');
+					mwidth++;
+				}
 			}
 			if (base_isneg[1] == 0 && (ptrflags->plus || ptrflags->space))
 			{
@@ -130,6 +133,14 @@ void	ft_di_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags,
 			if (neg_space)
 			{
 				ft_putchar('-');
+			}
+			if (ptrflags->zero == 1)
+			{
+				while (mwidth < ptrfwplc->minw - str_len - ps_space - neg_space)
+				{
+					ft_putchar('0');
+					mwidth++;
+				}
 			}
 			ft_putstr(str);
 		}
