@@ -6,25 +6,47 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 16:23:05 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/03/12 15:39:24 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/03/19 22:09:56 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_p_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str)
+void	ft_p_conv_help_2(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str)
 {
 	int		i;
+	int		str_len;
 	char	s_z;
 
 	i = 0;
+	str_len = ft_strlen(str);
+	if (ptrfwplc->minw > str_len)
+	{
+		s_z = (ptrflags->zero) ? '0' : ' ';
+		while (i < ptrfwplc->minw - str_len - 2)
+		{
+			ft_putchar(s_z);
+			i++;
+		}
+	}
+	ft_putstr("0x");
+	ft_putstr(str);
+}
+
+void	ft_p_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str)
+{
+	int		i;
+	int		str_len;
+
+	i = 0;
+	str_len = ft_strlen(str);
 	if (ptrflags->minus)
 	{
 		ft_putstr("0x");
 		ft_putstr(str);
-		if (ptrfwplc->minw > (int)ft_strlen(str))
+		if (ptrfwplc->minw > str_len)
 		{
-			while (i < ptrfwplc->minw - (int)ft_strlen(str) - 2)
+			while (i < ptrfwplc->minw - str_len - 2)
 			{
 				ft_putchar(' ');
 				i++;
@@ -32,19 +54,7 @@ void	ft_p_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str)
 		}
 	}
 	else
-	{
-		if (ptrfwplc->minw > (int)ft_strlen(str))
-		{
-			s_z = (ptrflags->zero) ? '0' : ' ';
-			while (i < ptrfwplc->minw - (int)ft_strlen(str) - 2)
-			{
-				ft_putchar(s_z);
-				i++;
-			}
-		}
-		ft_putstr("0x");
-		ft_putstr(str);
-	}
+		ft_p_conv_help_2(ptrfwplc, ptrflags, str);
 }
 
 int		ft_p_base(t_fwplc *ptrfwplc, t_flags *ptrflags,

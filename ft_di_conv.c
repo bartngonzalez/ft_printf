@@ -6,92 +6,81 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 16:07:11 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/03/18 05:00:11 by bart             ###   ########.fr       */
+/*   Updated: 2019/03/20 00:19:50 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_left(t_fwplc *ptrfwplc, t_flags *ptrflags,
-		char *str, int *base_isneg)
+void	ft_di_plus_space(t_flags *ptrflags, int *base_isneg)
 {
-	int		str_len;
-	int		mwidth;
-	int		ps_space;
-	int		neg_space;
-
-	str_len = (int)ft_strlen(str);
-	ps_space = 0;
-	neg_space = (base_isneg[1] == 1) ? 1 : 0;
-	if (ptrfwplc->minw > str_len && ptrfwplc->precision == -1)
+	if (base_isneg[1] == 0 && (ptrflags->plus || ptrflags->space))
 	{
-		mwidth = 0;
-		if (base_isneg[1] == 0 && (ptrflags->plus || ptrflags->space))
+		if (ptrflags->plus)
+			ft_putchar('+');
+		else if (ptrflags->space)
+			ft_putchar(' ');
+	}
+}
+
+void	ft_di_precision(t_fwplc *ptrfwplc, char *str, int *strlen_mw_ps_neg)
+{
+	if (ptrfwplc->precision > strlen_mw_ps_neg[0])
+	{
+		while (strlen_mw_ps_neg[1] < ptrfwplc->precision - strlen_mw_ps_neg[0])
 		{
-			if (ptrflags->plus)
-			{
-				ft_putchar('+');
-			}
-			else if (ptrflags->space)
-			{
-				ft_putchar(' ');
-			}
-			ps_space = 1;
+			ft_putchar('0');
+			strlen_mw_ps_neg[1]++;
 		}
-		ft_putstr(str);
-		while (mwidth < ptrfwplc->minw - str_len - ps_space - neg_space)
+	}
+	ft_putstr(str);
+	if (ptrfwplc->minw > strlen_mw_ps_neg[1] +
+		strlen_mw_ps_neg[0] + strlen_mw_ps_neg[2] + strlen_mw_ps_neg[3])
+	{
+		strlen_mw_ps_neg[1] += strlen_mw_ps_neg[0]
+		+ strlen_mw_ps_neg[2] + strlen_mw_ps_neg[3];
+		while (strlen_mw_ps_neg[1] < ptrfwplc->minw)
 		{
 			ft_putchar(' ');
-			mwidth++;
+			strlen_mw_ps_neg[1]++;
 		}
+	}
+}
+
+void	ft_di_minw(t_fwplc *ptrfwplc, char *str, int *strlen_mw_ps_neg)
+{
+	ft_putstr(str);
+	while (strlen_mw_ps_neg[1] < ptrfwplc->minw -
+		strlen_mw_ps_neg[0] - strlen_mw_ps_neg[2] - strlen_mw_ps_neg[3])
+	{
+		ft_putchar(' ');
+		strlen_mw_ps_neg[1]++;
+	}
+}
+
+void	ft_di_left(t_fwplc *ptrfwplc, t_flags *ptrflags,
+		char *str, int *base_isneg)
+{
+	int strlen_mw_ps_neg[4];
+
+	strlen_mw_ps_neg[0] = ft_strlen(str);
+	strlen_mw_ps_neg[1] = 0;
+	strlen_mw_ps_neg[2] =
+	(base_isneg[1] == 0 && (ptrflags->plus || ptrflags->space)) ? 1 : 0;
+	strlen_mw_ps_neg[3] = (base_isneg[1] == 1) ? 1 : 0;
+	if (ptrfwplc->minw > strlen_mw_ps_neg[0] && ptrfwplc->precision == -1)
+	{
+		ft_di_plus_space(ptrflags, base_isneg);
+		ft_di_minw(ptrfwplc, str, strlen_mw_ps_neg);
 	}
 	else if (ptrfwplc->precision > -1)
 	{
-		mwidth = 0;
-		if (base_isneg[1] == 0 && (ptrflags->plus || ptrflags->space))
-		{
-			if (ptrflags->plus)
-			{
-				ft_putchar('+');
-			}
-			else if (ptrflags->space)
-			{
-				ft_putchar(' ');
-			}
-			ps_space = 1;
-		}
-		if (ptrfwplc->precision > str_len)
-		{
-			while (mwidth < ptrfwplc->precision - str_len)
-			{
-				ft_putchar('0');
-				mwidth++;
-			}
-		}
-		ft_putstr(str);
-		if (ptrfwplc->minw > mwidth + str_len + ps_space + neg_space)
-		{
-			mwidth += str_len + ps_space + neg_space;
-			while (mwidth < ptrfwplc->minw)
-			{
-				ft_putchar(' ');
-				mwidth++;
-			}
-		}
+		ft_di_plus_space(ptrflags, base_isneg);
+		ft_di_precision(ptrfwplc, str, strlen_mw_ps_neg);
 	}
 	else
 	{
-		if (base_isneg[1] == 0 && (ptrflags->plus || ptrflags->space))
-		{
-			if (ptrflags->plus)
-			{
-				ft_putchar('+');
-			}
-			else if (ptrflags->space)
-			{
-				ft_putchar(' ');
-			}
-		}
+		ft_di_plus_space(ptrflags, base_isneg);
 		ft_putstr(str);
 	}
 }
@@ -99,25 +88,34 @@ void	ft_left(t_fwplc *ptrfwplc, t_flags *ptrflags,
 void	ft_di_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags,
 	char *str, int *base_isneg)
 {
-	int str_len;
-	int ps_space;
-	int mwidth;
+	int		str_len;
+	int		ps_space;
+	int		mwidth;
+	int		mwidth_max;
+	int		prec_space;
+	int		neg_space;
 
 	str_len = ft_strlen(str);
-	ps_space = 0;
+	ps_space = (base_isneg[1] == 0 && (ptrflags->plus || ptrflags->space))
+	? 1 : 0;
+	mwidth = 0;
+	prec_space = 0;
+	neg_space = (base_isneg[1] == 1) ? 1 : 0;
 	if (ptrflags->minus)
 	{
 		if (base_isneg[1] == 1)
-		{
 			ft_putchar('-');
-		}
-		ft_left(ptrfwplc, ptrflags, str, base_isneg);
+		ft_di_left(ptrfwplc, ptrflags, str, base_isneg);
 	}
 	else
 	{
 		if (ptrfwplc->minw > str_len && ptrfwplc->precision == -1)
 		{
-			mwidth = 0;
+			while (mwidth < ptrfwplc->minw - str_len - ps_space - neg_space)
+			{
+				ft_putchar(' ');
+				mwidth++;
+			}
 			if (base_isneg[1] == 0 && (ptrflags->plus || ptrflags->space))
 			{
 				if (ptrflags->plus)
@@ -128,17 +126,68 @@ void	ft_di_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags,
 				{
 					ft_putchar(' ');
 				}
-				ps_space = 1;
 			}
-			while (mwidth < ptrfwplc->minw - str_len - ps_space)
+			if (neg_space)
 			{
-				ft_putchar(' ');
-				mwidth++;
+				ft_putchar('-');
+			}
+			ft_putstr(str);
+		}
+		else if (ptrfwplc->precision > -1)
+		{
+			mwidth_max = (ptrfwplc->precision > str_len)
+			? ptrfwplc->precision : str_len;
+			if (ptrfwplc->minw > mwidth_max)
+			{
+				while (mwidth < ptrfwplc->minw - mwidth_max
+					- neg_space - ps_space)
+				{
+					ft_putchar(' ');
+					mwidth++;
+				}
+			}
+			if (base_isneg[1] == 0 && (ptrflags->plus || ptrflags->space))
+			{
+				if (ptrflags->plus)
+				{
+					ft_putchar('+');
+				}
+				else if (ptrflags->space)
+				{
+					ft_putchar(' ');
+				}
+			}
+			if (neg_space)
+			{
+				ft_putchar('-');
+			}
+			if (ptrfwplc->precision > str_len)
+			{
+				while (prec_space < ptrfwplc->precision - str_len)
+				{
+					ft_putchar('0');
+					prec_space++;
+				}
 			}
 			ft_putstr(str);
 		}
 		else
 		{
+			if (base_isneg[1] == 0 && (ptrflags->plus || ptrflags->space))
+			{
+				if (ptrflags->plus)
+				{
+					ft_putchar('+');
+				}
+				else if (ptrflags->space)
+				{
+					ft_putchar(' ');
+				}
+			}
+			if (neg_space)
+			{
+				ft_putchar('-');
+			}
 			ft_putstr(str);
 		}
 	}

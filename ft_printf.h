@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 20:32:55 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/03/16 01:30:55 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/03/19 22:30:59 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,9 @@ int		ft_c_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg);
 */
 
 int		ft_s_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg);
+char	*ft_s_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags,
+	int *i_j_strsize, char *str);
+char	*ft_s_conv_help_2(t_fwplc *ptrfwplc, int *i_j_strsize);
 
 /*
 ** ft_p_conv.c
@@ -109,6 +112,7 @@ int		ft_p_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg);
 int		ft_p_base(t_fwplc *ptrfwplc, t_flags *ptrflags,
 	unsigned long nbr, int base);
 void	ft_p_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str);
+void	ft_p_conv_help_2(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str);
 
 /*
 ** ft_di_conv.c
@@ -119,7 +123,8 @@ int		ft_di_base(t_fwplc *ptrfwplc, t_flags *ptrflags,
 	unsigned long nbr, int *base_isneg);
 void ft_di_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags,
 	char *str, int *base_isneg);
-void ft_left(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str, int *base_isneg);
+void ft_di_left(t_fwplc *ptrfwplc, t_flags *ptrflags,
+	char *str, int *base_isneg);
 
 int		ft_flags(char *str, va_list arg);
 int		ft_base(unsigned long nbr, int base);
