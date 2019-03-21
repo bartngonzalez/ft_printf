@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 20:32:55 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/03/19 22:30:59 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/03/20 14:16:01 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ int		ft_printf(const char *restrict format, ...);
 
 void ft_setformat(char *format, t_fwplc *ptrfwplc, t_flags *ptrflags,
 		va_list arg);
+void ft_isminw(char *str, t_fwplc *ptrfwplc);
+void ft_isprec(char *str, t_fwplc *ptrfwplc);
+void ft_islen(char *str, t_fwplc *ptrfwplc);
 
 /*
 ** ft_isflags.c
@@ -57,24 +60,6 @@ void ft_setformat(char *format, t_fwplc *ptrfwplc, t_flags *ptrflags,
 void ft_isflags(char *str, t_fwplc *ptrfwplc, t_flags *ptrflags);
 void ft_setflags(t_flags *ptrflags);
 void ft_flagson(t_fwplc *ptrfwplc, t_flags *ptrflags);
-
-/*
-** ft_isminw.c
-*/
-
-void ft_isminw(char *str, t_fwplc *ptrfwplc);
-
-/*
-** ft_isprec.c
-*/
-
-void ft_isprec(char *str, t_fwplc *ptrfwplc);
-
-/*
-** ft_islen.c
-*/
-
-void ft_islen(char *str, t_fwplc *ptrfwplc);
 
 /*
 ** ft_convtype.c
@@ -123,8 +108,16 @@ int		ft_di_base(t_fwplc *ptrfwplc, t_flags *ptrflags,
 	unsigned long nbr, int *base_isneg);
 void ft_di_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags,
 	char *str, int *base_isneg);
+
+/*
+** ft_di_conv_2.c
+*/
+
 void ft_di_left(t_fwplc *ptrfwplc, t_flags *ptrflags,
 	char *str, int *base_isneg);
+void	ft_di_minw(t_fwplc *ptrfwplc, char *str, int *strlen_mw_ps_neg);
+void	ft_di_precision(t_fwplc *ptrfwplc, char *str, int *strlen_mw_ps_neg);
+void	ft_di_plus_space(t_flags *ptrflags, int is_neg);
 
 int		ft_flags(char *str, va_list arg);
 int		ft_base(unsigned long nbr, int base);
