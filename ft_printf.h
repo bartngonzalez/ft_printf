@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 20:32:55 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/03/20 14:16:01 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/03/21 20:23:55 by bart             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,9 +115,20 @@ void ft_di_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags,
 
 void ft_di_left(t_fwplc *ptrfwplc, t_flags *ptrflags,
 	char *str, int *base_isneg);
-void	ft_di_minw(t_fwplc *ptrfwplc, char *str, int *strlen_mw_ps_neg);
-void	ft_di_precision(t_fwplc *ptrfwplc, char *str, int *strlen_mw_ps_neg);
+void	ft_di_left_minw(t_fwplc *ptrfwplc, char *str, int *strlen_mw_ps_neg);
+void	ft_di_left_precision(t_fwplc *ptrfwplc, char *str, int *strlen_mw_ps_neg);
 void	ft_di_plus_space(t_flags *ptrflags, int is_neg);
+
+/*
+** ft_di_conv_3.c
+*/
+
+void ft_di_right(t_fwplc *ptrfwplc, t_flags *ptrflags,
+	char *str, int *base_isneg);
+void ft_di_right_minw(t_fwplc *ptrfwplc, t_flags *ptrflags,
+	char *str, int *slen_ps_mw_mwmax_prec);
+void ft_di_right_precision(t_fwplc *ptrfwplc, t_flags *ptrflags,
+	char *str, int *slen_ps_mw_mwmax_prec);
 
 int		ft_flags(char *str, va_list arg);
 int		ft_base(unsigned long nbr, int base);

@@ -6,85 +6,11 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 16:07:11 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/03/20 19:29:51 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/03/21 20:25:53 by bart             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-void ft_di_right(t_fwplc *ptrfwplc, t_flags *ptrflags,
-	char *str, int *base_isneg)
-{
-	int		str_len;
-	int		ps_space;
-	int		mwidth;
-	int		mwidth_max;
-	int		prec_space;
-	int		neg_space;
-
-	str_len = ft_strlen(str);
-	ps_space = (base_isneg[1] == 0 && (ptrflags->plus || ptrflags->space))
-	? 1 : 0;
-	mwidth = 0;
-	mwidth_max = (ptrfwplc->precision > str_len)
-	? ptrfwplc->precision : str_len;
-	prec_space = 0;
-	neg_space = (base_isneg[1] == 1) ? 1 : 0;
-	if (ptrfwplc->minw > str_len && ptrfwplc->precision == -1)
-	{
-		if (ptrflags->zero == 0)
-		{
-			while (mwidth < ptrfwplc->minw - str_len - ps_space - neg_space)
-			{
-				ft_putchar(' ');
-				mwidth++;
-			}
-		}
-		ft_di_plus_space(ptrflags, base_isneg[1]);
-		if (neg_space)
-			ft_putchar('-');
-		if (ptrflags->zero == 1)
-		{
-			while (mwidth < ptrfwplc->minw - str_len - ps_space - neg_space)
-			{
-				ft_putchar('0');
-				mwidth++;
-			}
-		}
-		ft_putstr(str);
-	}
-	else if (ptrfwplc->precision > -1)
-	{
-		if (ptrfwplc->minw > mwidth_max)
-		{
-			while (mwidth < ptrfwplc->minw - mwidth_max
-				- neg_space - ps_space)
-			{
-				ft_putchar(' ');
-				mwidth++;
-			}
-		}
-		ft_di_plus_space(ptrflags, base_isneg[1]);
-		if (neg_space)
-			ft_putchar('-');
-		if (ptrfwplc->precision > str_len)
-		{
-			while (prec_space < ptrfwplc->precision - str_len)
-			{
-				ft_putchar('0');
-				prec_space++;
-			}
-		}
-		ft_putstr(str);
-	}
-	else
-	{
-		ft_di_plus_space(ptrflags, base_isneg[1]);
-		if (neg_space)
-			ft_putchar('-');
-		ft_putstr(str);
-	}
-}
 
 void	ft_di_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags,
 	char *str, int *base_isneg)

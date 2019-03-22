@@ -6,7 +6,7 @@
 #    By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/26 14:21:09 by bgonzale          #+#    #+#              #
-#    Updated: 2019/03/20 13:09:57 by bgonzale         ###   ########.fr        #
+#    Updated: 2019/03/21 20:26:10 by bart             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ CFILES = ft_libft.c \
 		 ft_p_conv.c \
 		 ft_di_conv.c \
 		 ft_di_conv_2.c \
+		 ft_di_conv_3.c \
 		 ft_o_flag.c \
 		 ft_u_flag.c \
 		 ft_x_flag.c \
