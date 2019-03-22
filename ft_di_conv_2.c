@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/20 13:02:40 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/03/21 20:19:41 by bart             ###   ########.fr       */
+/*   Updated: 2019/03/21 20:45:21 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	ft_di_plus_space(t_flags *ptrflags, int is_neg)
 	}
 }
 
-void	ft_di_left_precision(t_fwplc *ptrfwplc, char *str, int *strlen_mw_ps_neg)
+void	ft_di_left_precision(t_fwplc *ptrfwplc, char *str,
+	int *strlen_mw_ps_neg)
 {
 	if (ptrfwplc->precision > strlen_mw_ps_neg[0])
 	{
