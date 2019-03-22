@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 15:50:12 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/03/12 18:03:46 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/03/21 23:33:14 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int		ft_flags(char *str, va_list arg)
 	// 	str_len += ft_s_flag(arg);
 	// if (*str == 'd' || *str == 'i')
 	// 	str_len += ft_d_i_flag(arg);
-	if (*str == 'o')
-		str_len += ft_o_flag(arg);
+	// if (*str == 'o')
+	// 	str_len += ft_o_flag(arg);
 	if (*str == 'u')
 		str_len += ft_u_flag(arg);
 	if (*str == 'x')

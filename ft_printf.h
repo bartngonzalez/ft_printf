@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 20:32:55 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/03/21 20:23:55 by bart             ###   ########.fr       */
+/*   Updated: 2019/03/21 23:32:51 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,10 +130,15 @@ void ft_di_right_minw(t_fwplc *ptrfwplc, t_flags *ptrflags,
 void ft_di_right_precision(t_fwplc *ptrfwplc, t_flags *ptrflags,
 	char *str, int *slen_ps_mw_mwmax_prec);
 
+/*
+** ft_o_conv.c
+*/
+
+int		ft_o_conv(va_list arg);
+
 int		ft_flags(char *str, va_list arg);
 int		ft_base(unsigned long nbr, int base);
 
-int		ft_o_flag(va_list arg);
 int		ft_u_flag(va_list arg);
 int		ft_x_flag(va_list arg);
 
