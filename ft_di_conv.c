@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 16:07:11 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/03/22 16:30:07 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/03/25 17:50:16 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,10 @@ void	ft_di_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags,
 int		ft_di_base(t_fwplc *ptrfwplc, t_flags *ptrflags,
 	unsigned long nbr, int *base_isneg)
 {
-	unsigned long	i;
 	unsigned long	len;
 	char			*str;
 	char			num;
 
-	i = 0;
 	len = ft_nbr_len(nbr, base_isneg[0]);
 	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (str == NULL)
@@ -47,7 +45,6 @@ int		ft_di_base(t_fwplc *ptrfwplc, t_flags *ptrflags,
 		num = ("0123456789abcdef"[nbr % base_isneg[0]]);
 		str[len] = num;
 		nbr /= base_isneg[0];
-		i++;
 	}
 	ft_di_conv_help(ptrfwplc, ptrflags, str, base_isneg);
 	free(str);

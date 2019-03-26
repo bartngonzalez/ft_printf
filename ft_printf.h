@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 20:32:55 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/03/21 23:32:51 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/03/25 18:04:49 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,11 @@ void ft_di_right_precision(t_fwplc *ptrfwplc, t_flags *ptrflags,
 ** ft_o_conv.c
 */
 
-int		ft_o_conv(va_list arg);
+int		ft_o_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg);
+int		ft_o_base(t_fwplc *ptrfwplc, t_flags *ptrflags,
+	unsigned long nbr, int base);
+void ft_o_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str);
+void ft_o_left(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str);
 
 int		ft_flags(char *str, va_list arg);
 int		ft_base(unsigned long nbr, int base);
