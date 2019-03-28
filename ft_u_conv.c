@@ -1,31 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_o_conv.c                                        :+:      :+:    :+:   */
+/*   ft_u_conv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/26 16:11:21 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/03/28 01:46:32 by bgonzale         ###   ########.fr       */
+/*   Created: 2018/09/26 16:14:27 by bgonzale          #+#    #+#             */
+/*   Updated: 2019/03/28 01:42:55 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #define ABS(i)  ((i < 0) ? (-i) : (i))
 
-void	ft_o_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str)
+void	ft_u_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str)
 {
-	if (ptrflags->minus)
-	{
-		ft_o_left(ptrfwplc, ptrflags, str);
-	}
-	else
-	{
-		ft_o_right(ptrfwplc, ptrflags, str);
-	}
+	ptrfwplc = NULL;
+	ptrflags = NULL;
+	ft_putstr(str);
 }
 
-int		ft_o_base(t_fwplc *ptrfwplc, t_flags *ptrflags,
+int		ft_u_base(t_fwplc *ptrfwplc, t_flags *ptrflags,
 	unsigned long long nbr, int base)
 {
 	unsigned long long		size;
@@ -48,16 +43,16 @@ int		ft_o_base(t_fwplc *ptrfwplc, t_flags *ptrflags,
 		str[size] = tab[ABS(nbr % base)];
 		nbr /= base;
 	}
-	ft_o_conv_help(ptrfwplc, ptrflags, str);
+	ft_u_conv_help(ptrfwplc, ptrflags, str);
 	free(str);
 	return (1);
 }
 
-int		ft_o_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg)
+int		ft_u_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg)
 {
-	unsigned long long nbr;
+	unsigned long long num;
 
-	nbr = va_arg(arg, unsigned int);
-	ft_o_base(ptrfwplc, ptrflags, nbr, 8);
+	num = va_arg(arg, unsigned int);
+	ft_u_base(ptrfwplc, ptrflags, num, 10);
 	return (1);
 }

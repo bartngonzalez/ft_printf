@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 20:32:55 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/03/27 15:08:03 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/03/28 02:10:18 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ char	*ft_s_conv_help_2(t_fwplc *ptrfwplc, int *i_j_strsize);
 
 int		ft_p_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg);
 int		ft_p_base(t_fwplc *ptrfwplc, t_flags *ptrflags,
-	unsigned long nbr, int base);
+	long long nbr, int base);
 void	ft_p_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str);
 void	ft_p_conv_help_2(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str);
 
@@ -105,7 +105,7 @@ void	ft_p_conv_help_2(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str);
 
 int		ft_di_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg);
 int		ft_di_base(t_fwplc *ptrfwplc, t_flags *ptrflags,
-	unsigned long nbr, int *base_isneg);
+	long long nbr, int *base_isneg);
 void ft_di_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags,
 	char *str, int *base_isneg);
 
@@ -136,7 +136,7 @@ void ft_di_right_precision(t_fwplc *ptrfwplc, t_flags *ptrflags,
 
 int		ft_o_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg);
 int		ft_o_base(t_fwplc *ptrfwplc, t_flags *ptrflags,
-	unsigned long nbr, int base);
+	unsigned long long nbr, int base);
 void ft_o_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str);
 
 /*
@@ -157,10 +157,18 @@ void	ft_o_right_minw(t_fwplc *ptrfwplc, t_flags *ptrflags,
 void	ft_o_right_precision(t_fwplc *ptrfwplc,
 	char *str, int *sl_mw_ps_ih_mwm);
 
+/*
+** ft_u_conv.c
+*/
+
+int		ft_u_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg);
+int		ft_u_base(t_fwplc *ptrfwplc, t_flags *ptrflags,
+	unsigned long long nbr, int base);
+void	ft_u_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str);
+
 int		ft_flags(char *str, va_list arg);
 int		ft_base(unsigned long nbr, int base);
 
-int		ft_u_flag(va_list arg);
 int		ft_x_flag(va_list arg);
 
 /*
@@ -169,8 +177,8 @@ int		ft_x_flag(va_list arg);
 
 void	ft_putchar(char c);
 void	ft_putstr(const char *str);
-size_t	ft_strlen(const char *str);
-int		ft_nbr_len(unsigned long nbr, int base);
+int	ft_strlen(const char *str);
+long long		ft_nbr_len(long long nbr, int base);
 int		ft_atoi(const char *str);
 
 #endif

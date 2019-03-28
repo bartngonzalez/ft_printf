@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 16:23:05 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/03/25 17:40:49 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/03/28 02:20:37 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ void	ft_p_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str)
 }
 
 int		ft_p_base(t_fwplc *ptrfwplc, t_flags *ptrflags,
-	unsigned long nbr, int base)
+	long long nbr, int base)
 {
-	unsigned long	len;
-	char			*str;
-	char			num;
+	long long	len;
+	char		*str;
+	char		num;
 
 	len = ft_nbr_len(nbr, base);
 	str = (char *)malloc(sizeof(char) * (len + 1));
@@ -83,9 +83,9 @@ int		ft_p_base(t_fwplc *ptrfwplc, t_flags *ptrflags,
 
 int		ft_p_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg)
 {
-	unsigned long	nbr;
+	long long	nbr;
 
-	nbr = va_arg(arg, unsigned long);
+	nbr = va_arg(arg, long long);
 	ft_p_base(ptrfwplc, ptrflags, nbr, 16);
 	return (1);
 }

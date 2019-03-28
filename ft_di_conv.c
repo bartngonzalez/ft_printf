@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 16:07:11 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/03/25 17:50:16 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/03/28 02:02:47 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ void	ft_di_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags,
 }
 
 int		ft_di_base(t_fwplc *ptrfwplc, t_flags *ptrflags,
-	unsigned long nbr, int *base_isneg)
+	long long nbr, int *base_isneg)
 {
-	unsigned long	len;
-	char			*str;
-	char			num;
+	long long	len;
+	char		*str;
+	char		num;
 
 	len = ft_nbr_len(nbr, base_isneg[0]);
 	str = (char *)malloc(sizeof(char) * (len + 1));
@@ -53,21 +53,14 @@ int		ft_di_base(t_fwplc *ptrfwplc, t_flags *ptrflags,
 
 int		ft_di_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg)
 {
-	int		nbr;
-	int		base_isneg[2];
+	long long	nbr;
+	int			base_isneg[2];
 
 	nbr = va_arg(arg, int);
 	base_isneg[0] = 10;
 	base_isneg[1] = (nbr < 0) ? 1 : 0;
-	if ((long)nbr == 2147483648 || (long)nbr == -2147483648)
-	{
-		ft_putstr("-2147483648");
-		return (1);
-	}
 	if (nbr < 0)
-	{
 		nbr = nbr * -1;
-	}
 	ft_di_base(ptrfwplc, ptrflags, nbr, base_isneg);
 	return (1);
 }

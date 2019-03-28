@@ -6,7 +6,7 @@
 #    By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/26 14:21:09 by bgonzale          #+#    #+#              #
-#    Updated: 2019/03/27 14:26:34 by bgonzale         ###   ########.fr        #
+#    Updated: 2019/03/28 00:10:45 by bgonzale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ CFILES = ft_libft.c \
 		 ft_o_conv.c \
 		 ft_o_conv_2.c \
 		 ft_o_conv_3.c \
-		 ft_u_flag.c \
+		 ft_u_conv.c \
 		 ft_x_flag.c \
 
 OBJS = $(CFILES:.c=.o)

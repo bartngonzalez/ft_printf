@@ -6,29 +6,29 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 00:16:56 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/02/03 21:41:07 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/03/28 02:10:30 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putchar(char c)
+void			ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
-void	ft_putstr(const char *str)
+void			ft_putstr(const char *str)
 {
-	int i;
+	int		i;
 
 	i = 0;
 	while (str[i] != '\0')
 		ft_putchar(str[i++]);
 }
 
-size_t	ft_strlen(const char *str)
+int				ft_strlen(const char *str)
 {
-	size_t strlen;
+	int		strlen;
 
 	strlen = 0;
 	while (str[strlen] != '\0')
@@ -36,10 +36,10 @@ size_t	ft_strlen(const char *str)
 	return (strlen);
 }
 
-int		ft_nbr_len(unsigned long nbr, int base)
+long long		ft_nbr_len(long long nbr, int base)
 {
-	unsigned long	i;
-	int				base_nbr;
+	long long	i;
+	int			base_nbr;
 
 	i = 0;
 	base_nbr = base;
@@ -50,10 +50,10 @@ int		ft_nbr_len(unsigned long nbr, int base)
 	return (i);
 }
 
-int		ft_atoi(const char *str)
+int				ft_atoi(const char *str)
 {
-	int	ret;
-	int	sign;
+	int		ret;
+	int		sign;
 
 	ret = 0;
 	sign = 1;
