@@ -6,7 +6,7 @@
 /*   By: bart <bart@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 20:24:58 by bart              #+#    #+#             */
-/*   Updated: 2019/03/27 00:56:32 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/01 20:12:42 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,12 @@ void	ft_di_right(t_fwplc *ptrfwplc, t_flags *ptrflags,
 	? ptrfwplc->precision : slen_ps_mw_mwmax_prec_in[0];
 	slen_ps_mw_mwmax_prec_in[4] = 0;
 	slen_ps_mw_mwmax_prec_in[5] = base_isneg[1];
-	if (ptrfwplc->minw > slen_ps_mw_mwmax_prec_in[0] && ptrfwplc->precision == -1)
+	if (ptrfwplc->minw > slen_ps_mw_mwmax_prec_in[0] &&
+		ptrfwplc->precision == -1)
 		ft_di_right_minw(ptrfwplc, ptrflags, str, slen_ps_mw_mwmax_prec_in);
 	else if (ptrfwplc->precision > -1)
-		ft_di_right_precision(ptrfwplc, ptrflags, str, slen_ps_mw_mwmax_prec_in);
+		ft_di_right_precision(ptrfwplc, ptrflags, str,
+			slen_ps_mw_mwmax_prec_in);
 	else
 	{
 		ft_di_plus_space(ptrflags, slen_ps_mw_mwmax_prec_in[5]);
