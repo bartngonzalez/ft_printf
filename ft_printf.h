@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 20:32:55 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/04/01 04:48:32 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/01 23:16:39 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,6 +209,12 @@ void	ft_xs_right_minw(t_fwplc *ptrfwplc, t_flags *ptrflags,
 	char *str, int *sl_is_mw_ps_mwm);
 void	ft_xs_right_precision(t_fwplc *ptrfwplc, char *str,
 	int *sl_is_mw_ps_mwm);
+
+/*
+** ft_f_conv.c
+*/
+
+int ft_f_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg);
 
 /*
 ** ft_libft.c
