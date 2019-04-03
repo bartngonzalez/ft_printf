@@ -6,13 +6,13 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/26 18:22:56 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/03/26 20:18:23 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/03 00:47:59 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_o_left_precision(t_fwplc *ptrfwplc, char *str, int *sl_ih_mw_ps)
+int		ft_o_left_precision(t_fwplc *ptrfwplc, char *str, int *sl_ih_mw_ps)
 {
 	if (sl_ih_mw_ps[1])
 		ft_putchar('0');
@@ -31,10 +31,12 @@ void	ft_o_left_precision(t_fwplc *ptrfwplc, char *str, int *sl_ih_mw_ps)
 			ft_putchar(' ');
 			sl_ih_mw_ps[2]++;
 		}
+		sl_ih_mw_ps[2] -= sl_ih_mw_ps[0] + sl_ih_mw_ps[1] + sl_ih_mw_ps[3];
 	}
+	return (sl_ih_mw_ps[0] + sl_ih_mw_ps[2] + sl_ih_mw_ps[3]);
 }
 
-void	ft_o_left_minw(t_fwplc *ptrfwplc, char *str, int *sl_ih_mw_ps)
+int		ft_o_left_minw(t_fwplc *ptrfwplc, char *str, int *sl_ih_mw_ps)
 {
 	if (sl_ih_mw_ps[1])
 		ft_putchar('0');
@@ -44,6 +46,7 @@ void	ft_o_left_minw(t_fwplc *ptrfwplc, char *str, int *sl_ih_mw_ps)
 		ft_putchar(' ');
 		sl_ih_mw_ps[2]++;
 	}
+	return (sl_ih_mw_ps[0] + sl_ih_mw_ps[2]);
 }
 
 /*
@@ -54,26 +57,30 @@ void	ft_o_left_minw(t_fwplc *ptrfwplc, char *str, int *sl_ih_mw_ps)
 ** sl_ih_mw_ps[3] = prec_space: number of times precision executed
 */
 
-void	ft_o_left(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str)
+int		ft_o_left(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str)
 {
 	int		sl_ih_mw_ps[4];
+	int		total;
 
 	sl_ih_mw_ps[0] = ft_strlen(str);
 	sl_ih_mw_ps[1] = ptrflags->hash;
 	sl_ih_mw_ps[2] = 0;
 	sl_ih_mw_ps[3] = 0;
+	total = 0 + sl_ih_mw_ps[1];
 	if (ptrfwplc->minw > sl_ih_mw_ps[0] && ptrfwplc->precision == -1)
 	{
-		ft_o_left_minw(ptrfwplc, str, sl_ih_mw_ps);
+		total += ft_o_left_minw(ptrfwplc, str, sl_ih_mw_ps);
 	}
 	else if (ptrfwplc->precision > -1)
 	{
-		ft_o_left_precision(ptrfwplc, str, sl_ih_mw_ps);
+		total += ft_o_left_precision(ptrfwplc, str, sl_ih_mw_ps);
 	}
 	else
 	{
 		if (sl_ih_mw_ps[1])
 			ft_putchar('0');
 		ft_putstr(str);
+		total += ft_strlen(str);
 	}
+	return (total);
 }

@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 20:32:55 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/04/01 23:16:39 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/03 00:14:20 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int		ft_printf(const char *restrict format, ...);
 ** ft_setformat.c
 */
 
-void ft_setformat(char *format, t_fwplc *ptrfwplc, t_flags *ptrflags,
+int ft_setformat(char *format, t_fwplc *ptrfwplc, t_flags *ptrflags,
 		va_list arg);
 void ft_isminw(char *str, t_fwplc *ptrfwplc);
 void ft_isprec(char *str, t_fwplc *ptrfwplc);
@@ -72,7 +72,7 @@ void ft_convtype_2(char *str, t_fwplc *ptr);
 ** ft_format.c
 */
 
-void ft_format(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg);
+int ft_format(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg);
 
 /*
 ** ft_c_conv.c
@@ -96,8 +96,8 @@ char	*ft_s_conv_help_2(t_fwplc *ptrfwplc, int *i_j_strsize);
 int		ft_p_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg);
 int		ft_p_base(t_fwplc *ptrfwplc, t_flags *ptrflags,
 	long long nbr, int base);
-void	ft_p_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str);
-void	ft_p_conv_help_2(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str);
+int ft_p_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str);
+int ft_p_conv_help_2(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str);
 
 /*
 ** ft_di_conv.c
@@ -106,29 +106,29 @@ void	ft_p_conv_help_2(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str);
 int		ft_di_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg);
 int		ft_di_base(t_fwplc *ptrfwplc, t_flags *ptrflags,
 	long long nbr, int *base_isneg);
-void ft_di_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags,
+int ft_di_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags,
 	char *str, int *base_isneg);
 
 /*
 ** ft_di_conv_2.c
 */
 
-void ft_di_left(t_fwplc *ptrfwplc, t_flags *ptrflags,
+int ft_di_left(t_fwplc *ptrfwplc, t_flags *ptrflags,
 	char *str, int *base_isneg);
-void	ft_di_left_minw(t_fwplc *ptrfwplc, char *str, int *strlen_mw_ps_neg);
-void	ft_di_left_precision(t_fwplc *ptrfwplc, char *str, int *strlen_mw_ps_neg);
-void	ft_di_plus_space(t_flags *ptrflags, int is_neg);
+int ft_di_left_minw(t_fwplc *ptrfwplc, char *str, int *strlen_mw_ps_neg);
+int ft_di_left_precision(t_fwplc *ptrfwplc, char *str, int *strlen_mw_ps_neg);
+int ft_di_plus_space(t_flags *ptrflags, int is_neg);
 
 /*
 ** ft_di_conv_3.c
 */
 
-void ft_di_right(t_fwplc *ptrfwplc, t_flags *ptrflags,
+int ft_di_right(t_fwplc *ptrfwplc, t_flags *ptrflags,
 	char *str, int *base_isneg);
-void ft_di_right_minw(t_fwplc *ptrfwplc, t_flags *ptrflags,
-	char *str, int *slen_ps_mw_mwmax_prec_in);
-void ft_di_right_precision(t_fwplc *ptrfwplc, t_flags *ptrflags,
-	char *str, int *slen_ps_mw_mwmax_prec_in);
+int ft_di_right_minw(t_fwplc *ptrfwplc, t_flags *ptrflags,
+	char *str, int *sl_ps_mw_mwm_prs_in);
+int ft_di_right_precision(t_fwplc *ptrfwplc, t_flags *ptrflags,
+	char *str, int *sl_ps_mw_mwm_prs_in);
 
 /*
 ** ft_o_conv.c
@@ -137,24 +137,24 @@ void ft_di_right_precision(t_fwplc *ptrfwplc, t_flags *ptrflags,
 int		ft_o_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg);
 int		ft_o_base(t_fwplc *ptrfwplc, t_flags *ptrflags,
 	unsigned long long nbr, int base);
-void ft_o_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str);
+int ft_o_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str);
 
 /*
 ** ft_o_conv_2.c
 */
 
-void ft_o_left(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str);
-void	ft_o_left_minw(t_fwplc *ptrfwplc, char *str, int *sl_ih_mw_ps);
-void	ft_o_left_precision(t_fwplc *ptrfwplc, char *str, int *sl_ih_mw_ps);
+int ft_o_left(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str);
+int ft_o_left_minw(t_fwplc *ptrfwplc, char *str, int *sl_ih_mw_ps);
+int ft_o_left_precision(t_fwplc *ptrfwplc, char *str, int *sl_ih_mw_ps);
 
 /*
 ** ft_o_conv_3.c
 */
 
-void	ft_o_right(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str);
-void	ft_o_right_minw(t_fwplc *ptrfwplc, t_flags *ptrflags,
+int ft_o_right(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str);
+int ft_o_right_minw(t_fwplc *ptrfwplc, t_flags *ptrflags,
 	char *str, int *sl_mw_ps_ih_mwm);
-void	ft_o_right_precision(t_fwplc *ptrfwplc,
+int ft_o_right_precision(t_fwplc *ptrfwplc,
 	char *str, int *sl_mw_ps_ih_mwm);
 
 /*

@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 16:02:34 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/03/19 21:52:12 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/02 21:13:58 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ int		ft_s_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg)
 	if (str == NULL)
 	{
 		ft_putstr("(null)");
-		return (0);
+		return (6);
 	}
 	new_str = ft_s_conv_help(ptrfwplc, ptrflags, i_j_strsize, str);
 	ft_putstr(new_str);
-	return (1);
+	return (ft_strlen(new_str));
 }

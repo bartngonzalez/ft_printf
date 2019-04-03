@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 16:33:05 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/03/05 17:15:52 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/02 21:01:08 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 
 int		ft_printf(const char *restrict format, ...)
 {
-	va_list arg;
+	va_list	arg;
 	int		str_len;
-	t_fwplc *ptrfwplc;
-	t_flags *ptrflags;
+	t_fwplc	*ptrfwplc;
+	t_flags	*ptrflags;
 
 	str_len = 0;
 	ptrfwplc = (t_fwplc *)malloc(sizeof(t_fwplc));
@@ -31,7 +31,7 @@ int		ft_printf(const char *restrict format, ...)
 	{
 		if (*format == '%')
 		{
-			ft_setformat((char *)format, ptrfwplc, ptrflags, arg);
+			str_len += ft_setformat((char *)format, ptrfwplc, ptrflags, arg);
 			format = format + ptrfwplc->pos + 1;
 		}
 		else

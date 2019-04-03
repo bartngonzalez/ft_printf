@@ -6,13 +6,13 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 14:25:56 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/03/29 16:11:52 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/03 01:03:47 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_o_right_precision(t_fwplc *ptrfwplc,
+int		ft_o_right_precision(t_fwplc *ptrfwplc,
 		char *str, int *sl_mw_ps_ih_mwm)
 {
 	if (ptrfwplc->minw > sl_mw_ps_ih_mwm[4])
@@ -35,9 +35,10 @@ void	ft_o_right_precision(t_fwplc *ptrfwplc,
 		}
 	}
 	ft_putstr(str);
+	return (sl_mw_ps_ih_mwm[0] + sl_mw_ps_ih_mwm[1] + sl_mw_ps_ih_mwm[2]);
 }
 
-void	ft_o_right_minw(t_fwplc *ptrfwplc, t_flags *ptrflags,
+int		ft_o_right_minw(t_fwplc *ptrfwplc, t_flags *ptrflags,
 		char *str, int *sl_mw_ps_ih_mwm)
 {
 	while (sl_mw_ps_ih_mwm[1] < ptrfwplc->minw
@@ -49,6 +50,7 @@ void	ft_o_right_minw(t_fwplc *ptrfwplc, t_flags *ptrflags,
 	if (sl_mw_ps_ih_mwm[3])
 		ft_putchar('0');
 	ft_putstr(str);
+	return (sl_mw_ps_ih_mwm[0] + sl_mw_ps_ih_mwm[1]);
 }
 
 /*
@@ -60,9 +62,10 @@ void	ft_o_right_minw(t_fwplc *ptrfwplc, t_flags *ptrflags,
 ** sl_mw_ps_ih_mwm[4] = mw_max: max amoint mwidth can be used.
 */
 
-void	ft_o_right(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str)
+int		ft_o_right(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str)
 {
 	int		sl_mw_ps_ih_mwm[5];
+	int		total;
 
 	sl_mw_ps_ih_mwm[0] = ft_strlen(str);
 	sl_mw_ps_ih_mwm[1] = 0;
@@ -71,18 +74,16 @@ void	ft_o_right(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str)
 	sl_mw_ps_ih_mwm[4] =
 	(ptrfwplc->precision > (sl_mw_ps_ih_mwm[0] + sl_mw_ps_ih_mwm[3]))
 	? ptrfwplc->precision : (sl_mw_ps_ih_mwm[0] + sl_mw_ps_ih_mwm[3]);
+	total = 0 + sl_mw_ps_ih_mwm[3];
 	if (ptrfwplc->minw > sl_mw_ps_ih_mwm[0] && ptrfwplc->precision == -1)
-	{
-		ft_o_right_minw(ptrfwplc, ptrflags, str, sl_mw_ps_ih_mwm);
-	}
+		total += ft_o_right_minw(ptrfwplc, ptrflags, str, sl_mw_ps_ih_mwm);
 	else if (ptrfwplc->precision > -1)
-	{
-		ft_o_right_precision(ptrfwplc, str, sl_mw_ps_ih_mwm);
-	}
+		total += ft_o_right_precision(ptrfwplc, str, sl_mw_ps_ih_mwm);
 	else
 	{
-		if (sl_mw_ps_ih_mwm[3])
-			ft_putchar('0');
+		(sl_mw_ps_ih_mwm[3]) ? ft_putchar('0') : 0;
 		ft_putstr(str);
+		total += sl_mw_ps_ih_mwm[0];
 	}
+	return (total);
 }

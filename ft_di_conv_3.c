@@ -6,104 +6,107 @@
 /*   By: bart <bart@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 20:24:58 by bart              #+#    #+#             */
-/*   Updated: 2019/04/01 20:12:42 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/03 00:00:53 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_di_right_precision(t_fwplc *ptrfwplc, t_flags *ptrflags,
-	char *str, int *slen_ps_mw_mwmax_prec_in)
+int		ft_di_right_precision(t_fwplc *ptrfwplc, t_flags *ptrflags,
+		char *str, int *sl_ps_mw_mwm_prs_in)
 {
-	if (ptrfwplc->minw > slen_ps_mw_mwmax_prec_in[3])
+	int		ps_space;
+
+	if (ptrfwplc->minw > sl_ps_mw_mwm_prs_in[3])
 	{
-		while (slen_ps_mw_mwmax_prec_in[2] < ptrfwplc->minw
-			- slen_ps_mw_mwmax_prec_in[3]
-			- slen_ps_mw_mwmax_prec_in[5] - slen_ps_mw_mwmax_prec_in[1])
+		while (sl_ps_mw_mwm_prs_in[2] < ptrfwplc->minw - sl_ps_mw_mwm_prs_in[3]
+			- sl_ps_mw_mwm_prs_in[5] - sl_ps_mw_mwm_prs_in[1])
 		{
 			ft_putchar(' ');
-			slen_ps_mw_mwmax_prec_in[2]++;
+			sl_ps_mw_mwm_prs_in[2]++;
 		}
 	}
-	ft_di_plus_space(ptrflags, slen_ps_mw_mwmax_prec_in[5]);
-	if (slen_ps_mw_mwmax_prec_in[5])
-		ft_putchar('-');
-	if (ptrfwplc->precision > slen_ps_mw_mwmax_prec_in[0])
+	ps_space = ft_di_plus_space(ptrflags, sl_ps_mw_mwm_prs_in[5]);
+	(sl_ps_mw_mwm_prs_in[5]) ? ft_putchar('-') : 0;
+	if (ptrfwplc->precision > sl_ps_mw_mwm_prs_in[0])
 	{
-		while (slen_ps_mw_mwmax_prec_in[4] < ptrfwplc->precision
-			- slen_ps_mw_mwmax_prec_in[0])
+		while (sl_ps_mw_mwm_prs_in[4] < ptrfwplc->precision
+			- sl_ps_mw_mwm_prs_in[0])
 		{
 			ft_putchar('0');
-			slen_ps_mw_mwmax_prec_in[4]++;
+			sl_ps_mw_mwm_prs_in[4]++;
 		}
 	}
 	ft_putstr(str);
+	return (sl_ps_mw_mwm_prs_in[0] + ps_space +
+		sl_ps_mw_mwm_prs_in[2] + sl_ps_mw_mwm_prs_in[4]);
 }
 
-void	ft_di_right_minw(t_fwplc *ptrfwplc, t_flags *ptrflags,
-		char *str, int *slen_ps_mw_mwmax_prec_in)
+int		ft_di_right_minw(t_fwplc *ptrfwplc, t_flags *ptrflags,
+		char *str, int *sl_ps_mw_mwm_prs_in)
 {
+	int		ps_space;
+
 	if (ptrflags->zero == 0)
 	{
-		while (slen_ps_mw_mwmax_prec_in[2] < ptrfwplc->minw -
-			slen_ps_mw_mwmax_prec_in[0] -
-			slen_ps_mw_mwmax_prec_in[1] - slen_ps_mw_mwmax_prec_in[5])
+		while (sl_ps_mw_mwm_prs_in[2] < ptrfwplc->minw - sl_ps_mw_mwm_prs_in[0]
+			- sl_ps_mw_mwm_prs_in[1] - sl_ps_mw_mwm_prs_in[5])
 		{
 			ft_putchar(' ');
-			slen_ps_mw_mwmax_prec_in[2]++;
+			sl_ps_mw_mwm_prs_in[2]++;
 		}
 	}
-	ft_di_plus_space(ptrflags, slen_ps_mw_mwmax_prec_in[5]);
-	if (slen_ps_mw_mwmax_prec_in[5])
-		ft_putchar('-');
+	ps_space = ft_di_plus_space(ptrflags, sl_ps_mw_mwm_prs_in[5]);
+	(sl_ps_mw_mwm_prs_in[5]) ? ft_putchar('-') : 0;
 	if (ptrflags->zero == 1)
 	{
-		while (slen_ps_mw_mwmax_prec_in[2] < ptrfwplc->minw -
-			slen_ps_mw_mwmax_prec_in[0] -
-			slen_ps_mw_mwmax_prec_in[1] - slen_ps_mw_mwmax_prec_in[5])
+		while (sl_ps_mw_mwm_prs_in[2] < ptrfwplc->minw - sl_ps_mw_mwm_prs_in[0]
+			- sl_ps_mw_mwm_prs_in[1] - sl_ps_mw_mwm_prs_in[5])
 		{
 			ft_putchar('0');
-			slen_ps_mw_mwmax_prec_in[2]++;
+			sl_ps_mw_mwm_prs_in[2]++;
 		}
 	}
 	ft_putstr(str);
+	return (sl_ps_mw_mwm_prs_in[0] + sl_ps_mw_mwm_prs_in[2] + ps_space);
 }
 
 /*
-** slen_ps_mw_mwmax_prec_in[6]: Break Down
-** slen_ps_mw_mwmax_prec_in[0] = str_len: size of the string/num
-** slen_ps_mw_mwmax_prec_in[1] = ps_space: add space if +/- is applicable
-** slen_ps_mw_mwmax_prec_in[2] = mwidth: number of mwidth spaces applied
-** slen_ps_mw_mwmax_prec_in[3] = mwidth_max: max amount mwidth needs to be used
-** slen_ps_mw_mwmax_prec_in[4] = prec_space: amount of times precision was used
-** slen_ps_mw_mwmax_prec_in[5] = is_neg: if num neg is_neg = 1 else is_neg = 0
+** sl_ps_mw_mwm_prs_in[6]: Break Down
+** sl_ps_mw_mwm_prs_in[0] = str_len: size of the string/num
+** sl_ps_mw_mwm_prs_in[1] = ps_space: add space if +/- is applicable
+** sl_ps_mw_mwm_prs_in[2] = mwidth: number of mwidth spaces applied
+** sl_ps_mw_mwm_prs_in[3] = mwidth_max: max amount mwidth needs to be used
+** sl_ps_mw_mwm_prs_in[4] = prec_space: amount of times precision was used
+** sl_ps_mw_mwm_prs_in[5] = is_neg: if num neg is_neg = 1 else is_neg = 0
 */
 
-void	ft_di_right(t_fwplc *ptrfwplc, t_flags *ptrflags,
+int		ft_di_right(t_fwplc *ptrfwplc, t_flags *ptrflags,
 		char *str, int *base_isneg)
 {
-	int		slen_ps_mw_mwmax_prec_in[6];
+	int		sl_ps_mw_mwm_prs_in[6];
+	int		total;
 
-	slen_ps_mw_mwmax_prec_in[0] = ft_strlen(str);
-	slen_ps_mw_mwmax_prec_in[1] =
+	sl_ps_mw_mwm_prs_in[0] = ft_strlen(str);
+	sl_ps_mw_mwm_prs_in[1] =
 	(base_isneg[1] == 0 && (ptrflags->plus || ptrflags->space)) ? 1 : 0;
-	slen_ps_mw_mwmax_prec_in[2] = 0;
-	slen_ps_mw_mwmax_prec_in[3] =
-	(ptrfwplc->precision > slen_ps_mw_mwmax_prec_in[0])
-	? ptrfwplc->precision : slen_ps_mw_mwmax_prec_in[0];
-	slen_ps_mw_mwmax_prec_in[4] = 0;
-	slen_ps_mw_mwmax_prec_in[5] = base_isneg[1];
-	if (ptrfwplc->minw > slen_ps_mw_mwmax_prec_in[0] &&
-		ptrfwplc->precision == -1)
-		ft_di_right_minw(ptrfwplc, ptrflags, str, slen_ps_mw_mwmax_prec_in);
+	sl_ps_mw_mwm_prs_in[2] = 0;
+	sl_ps_mw_mwm_prs_in[3] = (ptrfwplc->precision > sl_ps_mw_mwm_prs_in[0])
+	? ptrfwplc->precision : sl_ps_mw_mwm_prs_in[0];
+	sl_ps_mw_mwm_prs_in[4] = 0;
+	sl_ps_mw_mwm_prs_in[5] = base_isneg[1];
+	total = 0 + base_isneg[1];
+	if (ptrfwplc->minw > sl_ps_mw_mwm_prs_in[0] && ptrfwplc->precision == -1)
+		total += ft_di_right_minw(ptrfwplc, ptrflags, str, sl_ps_mw_mwm_prs_in);
 	else if (ptrfwplc->precision > -1)
-		ft_di_right_precision(ptrfwplc, ptrflags, str,
-			slen_ps_mw_mwmax_prec_in);
+		total += ft_di_right_precision(ptrfwplc, ptrflags, str,
+			sl_ps_mw_mwm_prs_in);
 	else
 	{
-		ft_di_plus_space(ptrflags, slen_ps_mw_mwmax_prec_in[5]);
-		if (slen_ps_mw_mwmax_prec_in[5])
-			ft_putchar('-');
+		total += ft_di_plus_space(ptrflags, sl_ps_mw_mwm_prs_in[5]) +
+		ft_strlen(str);
+		(sl_ps_mw_mwm_prs_in[5]) ? ft_putchar('-') : 0;
 		ft_putstr(str);
 	}
+	return (total);
 }

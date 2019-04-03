@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/26 16:43:35 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/03/20 13:08:13 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/02 20:59:54 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 void	ft_islen(char *str, t_fwplc *ptrfwplc)
 {
-	int	pos;
+	int		pos;
 
 	pos = ptrfwplc->pos;
 	ptrfwplc->length = 0;
@@ -93,7 +93,7 @@ void	ft_isminw(char *str, t_fwplc *ptrfwplc)
 ** length, and conversion type. Calls format function to begin printing.
 */
 
-void	ft_setformat(char *format, t_fwplc *ptrfwplc, t_flags *ptrflags,
+int		ft_setformat(char *format, t_fwplc *ptrfwplc, t_flags *ptrflags,
 		va_list arg)
 {
 	format++;
@@ -103,5 +103,5 @@ void	ft_setformat(char *format, t_fwplc *ptrfwplc, t_flags *ptrflags,
 	ft_isprec(format, ptrfwplc);
 	ft_islen(format, ptrfwplc);
 	ft_convtype(format, ptrfwplc);
-	ft_format(ptrfwplc, ptrflags, arg);
+	return (ft_format(ptrfwplc, ptrflags, arg));
 }
