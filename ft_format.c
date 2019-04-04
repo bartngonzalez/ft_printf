@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/22 18:36:25 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/04/03 00:14:43 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/03 20:46:35 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ int		ft_format(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg)
 	}
 	else if (ptrfwplc->convtype == 'u')
 	{
-		ft_u_conv(ptrfwplc, ptrflags, arg);
+		return (ft_u_conv(ptrfwplc, ptrflags, arg));
 	}
 	else if (ptrfwplc->convtype == 'x' || ptrfwplc->convtype == 'X')
 	{
-		ft_xs_conv(ptrfwplc, ptrflags, arg);
+		return (ft_xs_conv(ptrfwplc, ptrflags, arg));
 	}
 	else if (ptrfwplc->convtype == 'f')
 	{

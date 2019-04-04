@@ -6,23 +6,24 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 16:14:27 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/03/31 20:40:20 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/03 20:36:31 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #define ABS(i)  ((i < 0) ? (-i) : (i))
 
-void	ft_u_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str)
+int		ft_u_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str)
 {
 	if (ptrflags->minus)
 	{
-		ft_u_left(ptrfwplc, str);
+		return (ft_u_left(ptrfwplc, str));
 	}
 	else
 	{
-		ft_u_right(ptrfwplc, ptrflags, str);
+		return (ft_u_right(ptrfwplc, ptrflags, str));
 	}
+	return (0);
 }
 
 int		ft_u_base(t_fwplc *ptrfwplc, t_flags *ptrflags,
@@ -32,6 +33,7 @@ int		ft_u_base(t_fwplc *ptrfwplc, t_flags *ptrflags,
 	char					*tab;
 	unsigned long long		tmp;
 	char					*str;
+	int						str_len;
 
 	size = 1;
 	tab =
@@ -43,14 +45,15 @@ int		ft_u_base(t_fwplc *ptrfwplc, t_flags *ptrflags,
 	if (str == NULL)
 		return (0);
 	str[size] = '\0';
+	str_len = 0;
 	while (size-- > tmp)
 	{
 		str[size] = tab[ABS(nbr % base)];
 		nbr /= base;
 	}
-	ft_u_conv_help(ptrfwplc, ptrflags, str);
+	str_len = ft_u_conv_help(ptrfwplc, ptrflags, str);
 	free(str);
-	return (1);
+	return (str_len);
 }
 
 int		ft_u_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg)
@@ -58,6 +61,5 @@ int		ft_u_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg)
 	unsigned long long nbr;
 
 	nbr = va_arg(arg, unsigned int);
-	ft_u_base(ptrfwplc, ptrflags, nbr, 10);
-	return (1);
+	return (ft_u_base(ptrfwplc, ptrflags, nbr, 10));
 }
