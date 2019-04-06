@@ -6,49 +6,12 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 23:17:01 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/04/05 14:27:11 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/05 21:29:25 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #define ABS(i)  ((i < 0) ? (-i) : (i))
-
-int			ft_f_write(char *str, int len, int is_neg, int prec)
-{
-	int		r;
-	int		i;
-
-	i = len + is_neg - 2;
-	r = (str[i + 1] - 48 >= 5) ? 1 : 0;
-	if (prec)
-	{
-		while (i >= 0 && r)
-		{
-			if (str[i] == '9')
-				str[i] = '0';
-			else if (str[i] != '.')
-			{
-				str[i] += 1;
-				r = 0;
-			}
-			i--;
-		}
-		if (r)
-			write(1, "1", 1);
-	}
-	write(1, str, len + is_neg - 1);
-	return (len + is_neg - 1);
-}
-
-long long	powk(int x, unsigned int y)
-{
-	if (y == 0)
-		return (1);
-	else if (y % 2 == 0)
-		return (powk(x, y / 2) * powk(x, y / 2));
-	else
-		return (x * powk(x, y / 2) * powk(x, y / 2));
-}
 
 /*
 ** temp helper. this is the base for the whole number to store into temp.
@@ -171,7 +134,7 @@ int			ft_f_base(t_fwplc *ptrfwplc, t_flags *ptrflags,
 		str[++varz[0]] = (char)mut_mul[0] + 48;
 		mut_mul[1] /= 10;
 	}
-	return (ft_f_write(str, varz[4], varz[1], varz[2]));
+	return (ft_f_write(ptrfwplc, ptrflags, str, varz));
 }
 
 /*
@@ -189,6 +152,5 @@ int			ft_f_conv(t_fwplc *ptrfwplc, t_flags *ptrflags,
 	nbr = (long double)va_arg(arg, double);
 	mut_mul[0] = 0;
 	mut_mul[1] = 0;
-	ft_f_base(ptrfwplc, ptrflags, nbr, mut_mul);
-	return (1);
+	return (ft_f_base(ptrfwplc, ptrflags, nbr, mut_mul));
 }

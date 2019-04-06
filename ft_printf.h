@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 20:32:55 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/04/05 14:18:43 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/05 21:41:57 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,6 +215,31 @@ int ft_xs_right_precision(t_fwplc *ptrfwplc, char *str,
 */
 
 int ft_f_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg);
+int			ft_f_base(t_fwplc *ptrfwplc, t_flags *ptrflags,
+		long double nbr, long long *mut_mul);
+int			ft_f_len(long double nbr, int prec);
+int			ft_f_temp(t_flags *ptrflags, char *str,
+		long double nbr, int *varz);
+char		*ft_f_temp_base(long long nbr);
+
+/*
+** ft_f_conv_2.c
+*/
+
+long long	powk(int x, unsigned int y);
+int			ft_f_write(t_fwplc *ptrfwplc, t_flags *ptrflags,
+	char *str, int *varz);
+char		*ft_strchr(const char *s, int c);
+void		ft_f_write_2(char *str, int i, int r, int prec);
+
+/*
+** ft_f_conv_lr.c
+*/
+
+int ft_f_left(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str, int *varz);
+int ft_f_right(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str, int *varz);
+int		ft_f_right_help(t_fwplc *ptrfwplc, int str_len,
+		int mwidth, char *str);
 
 /*
 ** ft_libft.c
