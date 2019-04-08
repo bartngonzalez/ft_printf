@@ -6,74 +6,85 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 16:02:34 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/04/07 17:16:38 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/08 03:23:18 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_s_conv_help_2(t_fwplc *ptrfwplc, int *i_j_strsize)
+int		ft_s_right(t_fwplc *ptrfwplc, char *str)
 {
-	char	*new_str;
-	char	*temp;
+	int		str_len;
+	int		mwidth;
+	int		prec;
 
-	new_str = (char *)malloc(sizeof(char) *
-	(i_j_strsize[2] + ptrfwplc->minw + 1));
-	if (new_str == NULL)
-		return (NULL);
-	new_str[i_j_strsize[2] + ptrfwplc->minw] = '\0';
-	temp = new_str;
-	free(new_str);
-	return (temp);
-}
-
-char	*ft_s_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags,
-	int *i_j_strsize, char *str)
-{
-	char	*new_str;
-	char	s_z;
-
-	new_str = ft_s_conv_help_2(ptrfwplc, i_j_strsize);
-	if (ptrflags->minus)
+	str_len =
+	(ptrfwplc->precision >= 0 && ptrfwplc->precision <= ft_strlen(str))
+	? ptrfwplc->precision : ft_strlen(str);
+	mwidth = 0;
+	prec = 0;
+	if (ptrfwplc->minw > str_len)
 	{
-		while (i_j_strsize[0] < i_j_strsize[2])
-			new_str[i_j_strsize[0]++] = str[i_j_strsize[0]];
-		i_j_strsize[0] = i_j_strsize[2];
-		if (ptrfwplc->minw > i_j_strsize[2])
-			while (i_j_strsize[0] < ptrfwplc->minw)
-				new_str[i_j_strsize[0]++] = ' ';
+		while (mwidth < ptrfwplc->minw - str_len)
+		{
+			ft_putchar(' ');
+			mwidth++;
+		}
+	}
+	if (ptrfwplc->precision > -1)
+	{
+		while (prec < str_len)
+			ft_putchar(str[prec++]);
 	}
 	else
+		ft_putstr(str);
+	return (str_len + mwidth);
+}
+
+int		ft_s_left(t_fwplc *ptrfwplc, char *str)
+{
+	int		str_len;
+	int		mwidth;
+	int		prec;
+
+	str_len =
+	(ptrfwplc->precision >= 0 && ptrfwplc->precision <= ft_strlen(str))
+	? ptrfwplc->precision : ft_strlen(str);
+	mwidth = 0;
+	prec = 0;
+	if (ptrfwplc->precision > -1)
 	{
-		if (ptrfwplc->minw > i_j_strsize[2])
-		{
-			s_z = (ptrflags->zero) ? '0' : ' ';
-			while (i_j_strsize[0] < ptrfwplc->minw - i_j_strsize[2])
-				new_str[i_j_strsize[0]++] = s_z;
-		}
-		while (i_j_strsize[1] < i_j_strsize[2])
-			new_str[i_j_strsize[0] + i_j_strsize[1]++] = str[i_j_strsize[1]];
+		while (prec < str_len)
+			ft_putchar(str[prec++]);
 	}
-	return (new_str);
+	else
+		ft_putstr(str);
+	if (ptrfwplc->minw > str_len)
+	{
+		while (mwidth < ptrfwplc->minw - str_len)
+		{
+			ft_putchar(' ');
+			mwidth++;
+		}
+	}
+	return (str_len + mwidth);
 }
 
 int		ft_s_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg)
 {
-	int		i_j_strsize[3];
 	char	*str;
-	char	*new_str;
+	int		str_len;
 
-	i_j_strsize[0] = 0;
-	i_j_strsize[1] = 0;
 	str = va_arg(arg, char *);
-	i_j_strsize[2] = (ptrfwplc->precision > -1) ?
-	ptrfwplc->precision : ft_strlen(str);
-	if (str == NULL)
+	str_len = 0;
+	if (!str)
 	{
 		ft_putstr("(null)");
 		return (6);
 	}
-	new_str = ft_s_conv_help(ptrfwplc, ptrflags, i_j_strsize, str);
-	ft_putstr(new_str);
-	return (ft_strlen(new_str));
+	if (ptrflags->minus)
+		str_len = ft_s_left(ptrfwplc, str);
+	else
+		str_len = ft_s_right(ptrfwplc, str);
+	return (str_len);
 }
