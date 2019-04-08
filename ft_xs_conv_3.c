@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 03:46:50 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/04/03 21:02:54 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/08 01:30:09 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int		ft_xs_right_precision(t_fwplc *ptrfwplc, char *str,
 	int *sl_is_mw_ps_mwm)
 {
+	sl_is_mw_ps_mwm[4] -=
+	(ft_atoi(str) == 0 && ptrfwplc->precision == 0) ? 1 : 0;
 	if (ptrfwplc->minw > sl_is_mw_ps_mwm[4])
 	{
 		while (sl_is_mw_ps_mwm[2] <
@@ -35,7 +37,7 @@ int		ft_xs_right_precision(t_fwplc *ptrfwplc, char *str,
 			sl_is_mw_ps_mwm[3]++;
 		}
 	}
-	ft_putstr(str);
+	(ft_atoi(str) == 0 && ptrfwplc->precision == 0) ? 0 : ft_putstr(str);
 	return (sl_is_mw_ps_mwm[0] + sl_is_mw_ps_mwm[2] + sl_is_mw_ps_mwm[3]);
 }
 
