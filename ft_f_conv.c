@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 23:17:01 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/04/05 21:29:25 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/07 17:14:35 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,40 @@
 #define ABS(i)  ((i < 0) ? (-i) : (i))
 
 /*
+** flag_len[2]: Break Down
+** flag_len[0] = flag
+** flag_len[1] = length/size of str
 ** temp helper. this is the base for the whole number to store into temp.
 ** also adds a '-' only if the number is < 0 (negative).
 */
 
 char		*ft_f_temp_base(long long nbr)
 {
-	int			flag;
-	int			len;
+	int			flag_len[2];
 	long long	tmp;
 	char		*str;
+	char		*temp;
 	char		num;
 
-	flag = (nbr < 0) ? 1 : 0;
-	len = 1 + flag;
+	flag_len[0] = (nbr < 0) ? 1 : 0;
+	flag_len[1] = 1 + flag_len[0];
 	tmp = nbr;
 	while (tmp /= 10)
-		len++;
-	str = (char *)malloc(sizeof(char) * (len + 1));
-	if (str == NULL)
+		flag_len[1]++;
+	if (!(str = (char *)malloc(sizeof(char) * (flag_len[1] + 1))))
 		return (0);
-	str[len] = '\0';
-	while (len-- > flag)
+	str[flag_len[1]] = '\0';
+	while (flag_len[1]-- > flag_len[0])
 	{
 		num = ("0123456789abcdef"[ABS(nbr % 10)]);
-		str[len] = num;
+		str[flag_len[1]] = num;
 		nbr /= 10;
 	}
-	if (flag)
+	if (flag_len[0])
 		str[0] = '-';
-	return (str);
+	temp = str;
+	free(temp);
+	return (temp);
 }
 
 /*

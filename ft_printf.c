@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 16:33:05 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/04/02 21:01:08 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/07 17:35:28 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,7 @@ int		ft_printf(const char *restrict format, ...)
 		}
 	}
 	va_end(arg);
+	free(ptrfwplc);
+	free(ptrflags);
 	return (str_len);
 }

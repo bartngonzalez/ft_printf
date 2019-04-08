@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 15:59:06 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/04/02 20:59:00 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/07 17:30:14 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		ft_c_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg)
 {
 	int		i_letter_size[3];
 	char	*str;
-	char	s_z;
+	int		str_len;
 
 	i_letter_size[0] = 0;
 	i_letter_size[1] = va_arg(arg, int);
@@ -31,11 +31,12 @@ int		ft_c_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg)
 	}
 	else
 	{
-		s_z = (ptrflags->zero) ? '0' : ' ';
 		while (i_letter_size[0] < i_letter_size[2] - 1)
-			str[i_letter_size[0]++] = s_z;
+			str[i_letter_size[0]++] = (ptrflags->zero) ? '0' : ' ';
 		str[i_letter_size[0]] = i_letter_size[1];
 	}
 	ft_putstr(str);
-	return (ft_strlen(str));
+	str_len = ft_strlen(str);
+	free(str);
+	return (str_len);
 }

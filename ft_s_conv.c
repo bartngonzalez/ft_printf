@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 16:02:34 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/04/02 21:13:58 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/07 17:16:38 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,16 @@
 char	*ft_s_conv_help_2(t_fwplc *ptrfwplc, int *i_j_strsize)
 {
 	char	*new_str;
+	char	*temp;
 
 	new_str = (char *)malloc(sizeof(char) *
 	(i_j_strsize[2] + ptrfwplc->minw + 1));
+	if (new_str == NULL)
+		return (NULL);
 	new_str[i_j_strsize[2] + ptrfwplc->minw] = '\0';
-	return (new_str);
+	temp = new_str;
+	free(new_str);
+	return (temp);
 }
 
 char	*ft_s_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags,
