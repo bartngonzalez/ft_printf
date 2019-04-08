@@ -6,7 +6,7 @@
 #    By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/26 14:21:09 by bgonzale          #+#    #+#              #
-#    Updated: 2019/04/07 19:07:45 by bgonzale         ###   ########.fr        #
+#    Updated: 2019/04/08 05:02:19 by bgonzale         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ CFILES = ft_libft.c \
 		 ft_f_conv_2.c \
 		 ft_f_conv_lr.c \
 		 ft_lmod.c \
+		 ft_percent_conv.c \
 
 OBJS = $(CFILES:.c=.o)
 

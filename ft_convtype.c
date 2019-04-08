@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/19 04:22:54 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/01/26 15:33:35 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/08 05:07:00 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	ft_convtype_2(char *str, t_fwplc *ptrfwplc)
 		ptrfwplc->convtype = 'X';
 	else if (str[pos] == 'f')
 		ptrfwplc->convtype = 'f';
+	else if (str[pos] == '%')
+		ptrfwplc->convtype = '%';
 }
 
 void	ft_convtype(char *str, t_fwplc *ptrfwplc)

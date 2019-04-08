@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/22 18:36:25 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/04/07 17:34:55 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/08 05:06:44 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,7 @@ int		ft_format(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg)
 		return (ft_xs_conv(ptrfwplc, ptrflags, arg));
 	else if (ptrfwplc->convtype == 'f')
 		return (ft_f_conv(ptrfwplc, ptrflags, arg));
+	else if (ptrfwplc->convtype == '%')
+		return (ft_percent_conv(ptrfwplc, ptrflags));
 	return (0);
 }

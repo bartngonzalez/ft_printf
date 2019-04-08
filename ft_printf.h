@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 20:32:55 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/04/08 04:46:01 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/08 05:33:47 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -280,6 +280,15 @@ int					ft_f_right_help(t_fwplc *ptrfwplc, int str_len,
 long long			ft_int_mod(t_fwplc *ptrfwplc, va_list arg);
 unsigned long long	ft_uint_mod(t_fwplc *ptrfwplc, va_list arg);
 long double			ft_f_mod(t_fwplc *ptrfwplc, va_list arg);
+
+/*
+** ft_percent_conv.c
+*/
+
+int					ft_percent_conv(t_fwplc *ptrfwplc,
+		t_flags *ptrflags);
+int					ft_percent_left(t_fwplc *ptrfwplc, char *str);
+int					ft_percent_right(t_fwplc *ptrfwplc, char *str);
 
 /*
 ** ft_libft.c
