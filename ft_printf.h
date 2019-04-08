@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 20:32:55 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/04/08 03:25:59 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/08 04:46:01 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int					ft_c_conv(t_fwplc *ptrfwplc,
 int					ft_s_conv(t_fwplc *ptrfwplc,
 		t_flags *ptrflags, va_list arg);
 int					ft_s_left(t_fwplc *ptrfwplc, char *str);
-int					ft_s_right(t_fwplc *ptrfwplc, char *str);
+int					ft_s_right(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str);
 /*
 ** ft_p_conv.c
 */

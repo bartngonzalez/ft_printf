@@ -6,13 +6,13 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 16:02:34 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/04/08 03:23:18 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/08 04:46:11 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_s_right(t_fwplc *ptrfwplc, char *str)
+int		ft_s_right(t_fwplc *ptrfwplc, t_flags *ptrflags, char *str)
 {
 	int		str_len;
 	int		mwidth;
@@ -27,7 +27,7 @@ int		ft_s_right(t_fwplc *ptrfwplc, char *str)
 	{
 		while (mwidth < ptrfwplc->minw - str_len)
 		{
-			ft_putchar(' ');
+			(ptrflags->zero) ? ft_putchar('0') : ft_putchar(' ');
 			mwidth++;
 		}
 	}
@@ -85,6 +85,6 @@ int		ft_s_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg)
 	if (ptrflags->minus)
 		str_len = ft_s_left(ptrfwplc, str);
 	else
-		str_len = ft_s_right(ptrfwplc, str);
+		str_len = ft_s_right(ptrfwplc, ptrflags, str);
 	return (str_len);
 }
