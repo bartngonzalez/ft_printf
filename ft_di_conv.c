@@ -6,11 +6,12 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 16:07:11 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/04/07 19:36:01 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/08 00:42:12 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#define ABS(i)  ((i < 0) ? (-i) : (i))
 
 int		ft_di_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags,
 	char *str, int *base_isneg)
@@ -31,22 +32,26 @@ int		ft_di_conv_help(t_fwplc *ptrfwplc, t_flags *ptrflags,
 int		ft_di_base(t_fwplc *ptrfwplc, t_flags *ptrflags,
 	long long nbr, int *base_isneg)
 {
-	long long	len;
+	int			size;
+	char		*tab;
+	long long	tmp;
 	char		*str;
-	char		num;
 	int			str_len;
 
-	len = ft_nbr_len(nbr, base_isneg[0]);
-	str = (char *)malloc(sizeof(char) * (len + 1));
+	size = 1;
+	tab =
+	(ptrfwplc->convtype == 'X' ? ("0123456789ABCDEF") : ("0123456789abcdef"));
+	tmp = nbr;
 	str_len = 0;
+	while (tmp /= base_isneg[0])
+		size++;
+	str = (char *)malloc(sizeof(char) * (size + tmp + 1));
 	if (str == NULL)
 		return (0);
-	str[len] = '\0';
-	while (nbr != 0)
+	str[size] = '\0';
+	while (size-- > tmp)
 	{
-		len--;
-		num = ("0123456789abcdef"[nbr % base_isneg[0]]);
-		str[len] = num;
+		str[size] = tab[ABS(nbr % base_isneg[0])];
 		nbr /= base_isneg[0];
 	}
 	str_len = ft_di_conv_help(ptrfwplc, ptrflags, str, base_isneg);
