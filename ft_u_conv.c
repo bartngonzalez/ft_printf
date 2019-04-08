@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 16:14:27 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/04/03 20:36:31 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/07 19:36:58 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,6 @@ int		ft_u_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg)
 {
 	unsigned long long nbr;
 
-	nbr = va_arg(arg, unsigned int);
+	nbr = ft_uint_mod(ptrfwplc, arg);
 	return (ft_u_base(ptrfwplc, ptrflags, nbr, 10));
 }

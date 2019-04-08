@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 16:07:11 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/04/02 23:09:18 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/07 19:36:01 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int		ft_di_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg)
 	long long	nbr;
 	int			base_isneg[2];
 
-	nbr = va_arg(arg, int);
+	nbr = ft_int_mod(ptrfwplc, arg);
 	base_isneg[0] = 10;
 	base_isneg[1] = (nbr < 0) ? 1 : 0;
 	if (nbr < 0)

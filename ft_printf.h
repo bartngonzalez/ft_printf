@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 20:32:55 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/04/07 18:22:01 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/07 19:34:39 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -275,6 +275,14 @@ int					ft_f_right(t_fwplc *ptrfwplc, t_flags *ptrflags,
 		char *str, int *varz);
 int					ft_f_right_help(t_fwplc *ptrfwplc, int str_len,
 		int mwidth, char *str);
+
+/*
+** ft_lmod.c
+*/
+
+long long			ft_int_mod(t_fwplc *ptrfwplc, va_list arg);
+unsigned long long	ft_uint_mod(t_fwplc *ptrfwplc, va_list arg);
+long double			ft_f_mod(t_fwplc *ptrfwplc, va_list arg);
 
 /*
 ** ft_libft.c
