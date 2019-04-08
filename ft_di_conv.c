@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 16:07:11 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/04/08 00:42:12 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/08 06:28:27 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,15 @@ int		ft_di_conv(t_fwplc *ptrfwplc, t_flags *ptrflags, va_list arg)
 	int			base_isneg[2];
 
 	nbr = ft_int_mod(ptrfwplc, arg);
+	if (nbr == INTMAX_MIN)
+	{
+		if (nbr < 0)
+		{
+			ft_putchar('-');
+			ft_putstr("9223372036854775808");
+		}
+		return (19);
+	}
 	base_isneg[0] = 10;
 	base_isneg[1] = (nbr < 0) ? 1 : 0;
 	if (nbr < 0)

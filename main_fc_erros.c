@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/07 19:45:05 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/04/08 05:30:30 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/08 06:32:52 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,5 +143,11 @@ int		main(void)
 	ft_printf("[%010s] is a string\n", "this");
 	printf("[%-010s] is a string\n", "this");
 	ft_printf("[%-010s] is a string\n", "this");
+
+	printf("\n");
+	printf("\n");
+
+	printf("[%lld]\n", -9223372036854775808);
+	ft_printf("[%lld]\n", -9223372036854775808);
 	return (0);
 }
