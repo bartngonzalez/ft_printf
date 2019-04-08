@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 20:32:55 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/04/05 22:27:21 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/07 18:22:01 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct		s_flags
 */
 
 int					ft_printf(const char *restrict format, ...);
+int					ft_printf_help(char *format);
 
 /*
 ** ft_setformat.c

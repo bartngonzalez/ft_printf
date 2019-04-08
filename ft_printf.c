@@ -6,11 +6,17 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/26 16:33:05 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/04/07 17:35:28 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/07 18:20:50 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int		ft_printf_help(char *format)
+{
+	ft_putchar(*format);
+	return (1);
+}
 
 /*
 ** Starts a loop on format and checks for %
@@ -36,9 +42,7 @@ int		ft_printf(const char *restrict format, ...)
 		}
 		else
 		{
-			ft_putchar(*format);
-			str_len += 1;
-			format++;
+			str_len += ft_printf_help((char *)format++);
 		}
 	}
 	va_end(arg);

@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 15:38:26 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/04/07 17:30:36 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/07 18:19:18 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		main(void)
 	// printf("[%d]\n", ft_printf("(-5c), 42 = [%-5c]\n", 42));
 	// printf("[%d]\n", printf("(.c),  42 = [%.c]\n", 42));
 	// printf("[%d]\n", ft_printf("(.c),  42 = [%.c]\n", 42));
-
+  //
 	// // // [s] - Conversion
 	// printf("\n\n[s] - Conversion\n");
 	// printf("[%d]\n", printf("(s),     42 = [%s]\n", "42"));
@@ -75,7 +75,7 @@ int		main(void)
 	// printf("[%d]\n", ft_printf("[%-5.2s] is a string\n", "Iam"));
 	// printf("[%d]\n", printf("[%-10s] is a string\n", ""));
 	// printf("[%d]\n", ft_printf("[%-10s] is a string\n", ""));
-
+  //
 	// // [p] - Conversion
 	// printf("\n\n[p] - Conversion\n");
 	// char *pstr = "42";
