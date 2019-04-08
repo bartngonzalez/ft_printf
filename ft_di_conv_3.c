@@ -6,7 +6,7 @@
 /*   By: bart <bart@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/21 20:24:58 by bart              #+#    #+#             */
-/*   Updated: 2019/04/03 00:00:53 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/08 04:08:17 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int		ft_di_right_precision(t_fwplc *ptrfwplc, t_flags *ptrflags,
 {
 	int		ps_space;
 
+	sl_ps_mw_mwm_prs_in[3] -=
+	(ft_atoi(str) == 0 && ptrfwplc->precision == 0) ? 1 : 0;
 	if (ptrfwplc->minw > sl_ps_mw_mwm_prs_in[3])
 	{
 		while (sl_ps_mw_mwm_prs_in[2] < ptrfwplc->minw - sl_ps_mw_mwm_prs_in[3]
@@ -30,14 +32,12 @@ int		ft_di_right_precision(t_fwplc *ptrfwplc, t_flags *ptrflags,
 	(sl_ps_mw_mwm_prs_in[5]) ? ft_putchar('-') : 0;
 	if (ptrfwplc->precision > sl_ps_mw_mwm_prs_in[0])
 	{
-		while (sl_ps_mw_mwm_prs_in[4] < ptrfwplc->precision
+		while (sl_ps_mw_mwm_prs_in[4]++ < ptrfwplc->precision
 			- sl_ps_mw_mwm_prs_in[0])
-		{
 			ft_putchar('0');
-			sl_ps_mw_mwm_prs_in[4]++;
-		}
+		sl_ps_mw_mwm_prs_in[4] -= 1;
 	}
-	ft_putstr(str);
+	(ft_atoi(str) == 0 && ptrfwplc->precision == 0) ? 0 : ft_putstr(str);
 	return (sl_ps_mw_mwm_prs_in[0] + ps_space +
 		sl_ps_mw_mwm_prs_in[2] + sl_ps_mw_mwm_prs_in[4]);
 }
