@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 20:32:55 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/04/08 06:53:31 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/09 18:49:06 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <string.h>
 # include <stdarg.h>
 # include <stdint.h>
+# include <stdio.h>
 
 typedef struct		s_fwplc
 {
