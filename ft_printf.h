@@ -6,7 +6,7 @@
 /*   By: bgonzale <bgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/13 20:32:55 by bgonzale          #+#    #+#             */
-/*   Updated: 2019/04/08 06:25:32 by bgonzale         ###   ########.fr       */
+/*   Updated: 2019/04/08 06:53:31 by bgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <string.h>
 # include <stdarg.h>
 # include <stdint.h>
-# include <stdio.h>
 
 typedef struct		s_fwplc
 {
@@ -289,7 +288,8 @@ long double			ft_f_mod(t_fwplc *ptrfwplc, va_list arg);
 int					ft_percent_conv(t_fwplc *ptrfwplc,
 		t_flags *ptrflags);
 int					ft_percent_left(t_fwplc *ptrfwplc, char *str);
-int					ft_percent_right(t_fwplc *ptrfwplc, char *str);
+int					ft_percent_right(t_fwplc *ptrfwplc,
+		t_flags *ptrflags, char *str);
 
 /*
 ** ft_libft.c
